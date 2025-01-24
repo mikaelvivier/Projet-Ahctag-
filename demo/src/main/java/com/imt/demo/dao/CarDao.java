@@ -7,6 +7,9 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.UUID;
 
+//DAO (Data Access Object) est un objet ou une interface qui
+// fournit des méthodes pour interagir avec la base de données.
+
 @Repository
 public interface CarDao extends MongoRepository<Car, UUID> {
     
