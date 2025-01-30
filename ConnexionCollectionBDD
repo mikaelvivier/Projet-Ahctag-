@@ -1,0 +1,17 @@
+➜  Projet-Ahctag- git:(api-authenticator) ✗ docker ps
+CONTAINER ID   IMAGE                         COMMAND                  CREATED       STATUS                   PORTS                      NAMES
+974ad9b2dd1e   docker-dev-env-imt-api-demo   "java -Dspring.profi…"   11 days ago   Up 3 minutes             0.0.0.0:8080->8080/tcp     api-demo
+7853e76f34e0   mongo                         "docker-entrypoint.s…"   11 days ago   Up 3 minutes (healthy)   0.0.0.0:27017->27017/tcp   mongo-demo
+
+
+➜  Projet-Ahctag- git:(api-authenticator) ✗ sudo docker exec -it mongo-demo bash
+root@7853e76f34e0:/#
+
+
+➜  root@7853e76f34e0:/# mongosh -u mongoadmin -p password
+
+test> show dbs
+
+test> use local
+
+local> show collections
