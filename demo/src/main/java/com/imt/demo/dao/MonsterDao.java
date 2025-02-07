@@ -11,8 +11,8 @@ import java.util.UUID;
 // fournit des méthodes pour interagir avec la base de données.
 
 @Repository
-public interface CarDao extends MongoRepository<Car, UUID> {
-    
-    List<Car> findAllByBrand(String brand);
-    
+public interface MonsterDao extends MongoRepository<Monster, UUID> {
+
+    List<Monster> findAllByType(String type);
+
 }

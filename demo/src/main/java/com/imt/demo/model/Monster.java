@@ -14,19 +14,24 @@ import java.util.UUID;
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
-public class Car {
+public class Monster {
 
     @MongoId
     private UUID id;
-    private String brand;
-    private String color;
-    private int horsePower;
+    private string type;
+    private int hp;
+    private int atk;
+    private int def;
+    private int vit;
 
-    public Car(String brand, String color, int horsePower) {
+    public Monster(String type, int hp, int atk, int def, int vit) {
         this.id = UUID.randomUUID();
-        this.brand = brand;
-        this.color = color;
-        this.horsePower = horsePower;
+        this.type = type;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.vit = vit;
     }
-    
+
 }
+

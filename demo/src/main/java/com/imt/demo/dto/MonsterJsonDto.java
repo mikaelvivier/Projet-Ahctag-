@@ -15,9 +15,11 @@ import lombok.Setter;
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
-public class CarJsonDto {
-    
+public class MonsterJsonDto {
+
     @NotNull private Brand brand;
-    @NotBlank private String color;
-    @Min(50) private int horsePower;
+    @Min(1) private int hp;
+    @Min(1) private int atk;
+    @Min(1) private int def;
+    @Min(1) private int vit;
 }
