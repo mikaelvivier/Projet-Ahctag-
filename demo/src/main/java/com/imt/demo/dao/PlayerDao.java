@@ -1,6 +1,6 @@
 package com.imt.demo.dao;
 
-import com.imt.demo.model.Car;
+import com.imt.demo.model.Player;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,8 +11,8 @@ import java.util.UUID;
 // fournit des méthodes pour interagir avec la base de données.
 
 @Repository
-public interface MonsterDao extends MongoRepository<Monster, UUID> {
+public interface PlayerDao extends MongoRepository<Player, UUID> {
 
-    List<Monster> findAllByType(String type);
+    List<Player> findAll();
 
 }

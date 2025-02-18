@@ -1,9 +1,8 @@
 package com.imt.demo.controller;
 
-import com.imt.demo.dto.Brand;
-import com.imt.demo.dto.CarJsonDto;
-import com.imt.demo.service.CarService;
-import com.imt.demo.model.Car;
+import com.imt.demo.dto.PlayerJsonDto;
+import com.imt.demo.service.PlayerService;
+import com.imt.demo.model.Player;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,23 +27,12 @@ public class PlayerController {
     @PostMapping("/save")
     public ResponseEntity<String> createPlayer(@Valid @RequestBody PlayerJsonDto player) {
         playerService.savePlayer(
-            new Car(
-                car.getBrand().toString(),
-                car.getColor(),
-                car.getHorsePower())
+            new Player(
+                player.getName(),
+                player.getLvl())
         );
         
         return ResponseEntity.ok("saved !");
-    }
-    
-    @GetMapping("/{brand}")
-    public ResponseEntity<List<CarJsonDto>> getCars(@PathVariable String brand) {
-        List<CarJsonDto> carsByBrand = carService.findCarsByBrand(brand)
-                .stream()
-                .map(car -> new CarJsonDto(Brand.valueOf(car.getBrand()), car.getColor(), car.getHorsePower()))
-                .toList();
-        
-        return ResponseEntity.ok(carsByBrand);
     }
     
 }
