@@ -1,6 +1,6 @@
 package com.imt.demo.dao;
 
-import com.imt.demo.model.Car;
+import com.imt.demo.model.Monster;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,9 +1,9 @@
 package com.imt.demo.controller;
 
-import com.imt.demo.dto.Brand;
-import com.imt.demo.dto.CarJsonDto;
-import com.imt.demo.service.CarService;
-import com.imt.demo.model.Car;
+import com.imt.demo.dto.MonsterJsonDto;
+import com.imt.demo.dto.Type;
+import com.imt.demo.service.MonsterService;
+import com.imt.demo.model.Monster;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,10 +30,10 @@ public class MonsterController {
         monsterService.saveMonster(
                 new Monster(
                         monster.getType(),
-                        monster.getHp().toString(),
-                        monster.getAtk().toString(),
-                        monster.getDef().toString(),
-                        monster.getVit().toString())
+                        monster.getHp(),
+                        monster.getAtk(),
+                        monster.getDef(),
+                        monster.getVit())
         );
 
         return ResponseEntity.ok("saved !");
@@ -43,7 +43,8 @@ public class MonsterController {
     public ResponseEntity<List<MonsterJsonDto>> getMonsters(@PathVariable String type) {
         List<MonsterJsonDto> monstersByType = monsterService.findMonstersByType(type)
                 .stream()
-                .map(car -> new MonsterJsonDto(Type.valueOf(monster.getType()),
+                .map(monster -> new MonsterJsonDto(
+                        Type.valueOf(String.valueOf(monster.getType())),
                         monster.getHp(),
                         monster.getAtk(),
                         monster.getDef(),

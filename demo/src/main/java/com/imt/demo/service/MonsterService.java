@@ -1,7 +1,8 @@
 package com.imt.demo.service;
 
-import com.imt.demo.dao.CarDao;
-import com.imt.demo.model.Car;
+import com.imt.demo.dao.MonsterDao;
+import com.imt.demo.model.Monster;
+import com.imt.demo.model.Monster;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
