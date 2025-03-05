@@ -4,24 +4,22 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b8093aff-e99c-4c58-8494-ab6a33d7463c" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/config/JwtGeneratorImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/config/JwtGeneratorInterface.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/controller/UserController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/exception/UserNotFoundException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/repository/UserRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/service/UserService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/service/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
+    <list default="true" id="b8093aff-e99c-4c58-8494-ab6a33d7463c" name="Changes" comment="feat: authentication with jwt">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/ApiApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/ApiApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/controller/CarController.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/dao/CarDao.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/dto/Brand.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/dto/CarJsonDto.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/model/Car.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/service/CarService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/config/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/config/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/configs/ApplicationConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/configs/JwtAuthenticationFilter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/configs/SecurityConfiguration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/controller/AuthenticationController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/controller/WelcomeController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/dao/UserDao.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/dto/LoginUserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/dto/RegisterUserDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/exception/MyCustomException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/response/LoginResponse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/service/AuthenticationService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/imt/demo/service/JwtService.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,7 +37,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$" value="api-player" />
+        <entry key="$PROJECT_DIR$" value="api-authenticator" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -63,6 +61,9 @@
         <option name="jdkForImporter" value="17" />
       </MavenImportingSettings>
     </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
@@ -182,8 +183,25 @@
       <workItem from="1741100698793" duration="84000" />
       <workItem from="1741100795719" duration="640000" />
       <workItem from="1741101450687" duration="5330000" />
-      <workItem from="1741160056575" duration="3762000" />
+      <workItem from="1741160056575" duration="6242000" />
     </task>
+    <task id="LOCAL-00001" summary="feat: authentication with jwt">
+      <option name="closed" value="true" />
+      <created>1741164399030</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741164399030</updated>
+    </task>
+    <task id="LOCAL-00002" summary="feat: authentication with jwt">
+      <option name="closed" value="true" />
+      <created>1741164643550</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741164643550</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -197,12 +215,12 @@
             <list>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="api-player" />
+                  <option value="origin/api-authenticator" />
                 </option>
               </RecentGroup>
               <RecentGroup>
                 <option name="FILTER_VALUES">
-                  <option value="origin/api-authenticator" />
+                  <option value="api-player" />
                 </option>
               </RecentGroup>
             </list>
@@ -220,7 +238,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="api-player" />
+                        <option value="origin/api-authenticator" />
                       </list>
                     </value>
                   </entry>
@@ -231,5 +249,9 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat: authentication with jwt" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: authentication with jwt" />
   </component>
 </project>
