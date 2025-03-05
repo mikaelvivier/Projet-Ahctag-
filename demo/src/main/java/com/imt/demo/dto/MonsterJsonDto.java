@@ -24,6 +24,10 @@ public class MonsterJsonDto {
     @Min(1) private int atk;
     @Min(1) private int def;
     @Min(1) private int vit;
+    private Skill skill1;
+    private Skill skill2;
+    private Skill skill3;
+
 
     public MonsterJsonDto(Type type, int hp, int atk, int def, int vit) {
         this.type = type;
@@ -31,6 +35,29 @@ public class MonsterJsonDto {
         this.atk = atk;
         this.def = def;
         this.vit = vit;
+        initializeSkills();
+    }
+
+    private void initializeSkills() {
+        switch (type) {
+            case FEU:
+                this.skill1 = Skill.FIREBALL;
+                this.skill2 = Skill.FLAME_BURST;
+                this.skill3 = Skill.INFERNO;
+                break;
+            case EAU:
+                this.skill1 = Skill.WATER_BLAST;
+                this.skill2 = Skill.TIDAL_WAVE;
+                this.skill3 = Skill.AQUA_JET;
+                break;
+            case VENT:
+                this.skill1 = Skill.WIND_SLASH;
+                this.skill2 = Skill.TORNADO;
+                this.skill3 = Skill.AIR_STRIKE;
+                break;
+            default:
+                throw new IllegalArgumentException("Type de monstre non supporté : " + type);
+        }
     }
 
     // Getter et Setter pour type
@@ -77,4 +104,30 @@ public class MonsterJsonDto {
     public void setVit(int vit) {
         this.vit = vit;
     }
+
+    public Skill getSkill2() {
+        return skill2;
+    }
+
+    public Skill getSkill1() {
+        return skill1;
+    }
+
+    public Skill getSkill3() {
+        return skill3;
+    }
+
+    public void setSkill1(Skill skill1) {
+        this.skill1 = skill1;
+    }
+
+    public void setSkill2(Skill skill2) {
+        this.skill2 = skill2;
+    }
+
+    public void setSkill3(Skill skill3) {
+        this.skill3 = skill3;
+    }
 }
+
+

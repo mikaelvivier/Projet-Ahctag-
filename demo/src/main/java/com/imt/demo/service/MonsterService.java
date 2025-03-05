@@ -24,4 +24,5 @@ public class MonsterService {
         return monsterDao.findAllByType(type);
     }
 
+
 }
