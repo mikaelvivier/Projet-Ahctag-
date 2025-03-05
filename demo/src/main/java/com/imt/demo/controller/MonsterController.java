@@ -25,6 +25,11 @@ public class MonsterController {
         this.monsterService = monsterService;
     }
 
+    @GetMapping("/")
+    public ResponseEntity<String> sayHello() {
+        return ResponseEntity.ok("saved !");
+    }
+
     @PostMapping("/save")
     public ResponseEntity<String> createMonster(@Valid @RequestBody MonsterJsonDto monster) {
         monsterService.saveMonster(
