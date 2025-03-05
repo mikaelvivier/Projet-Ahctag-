@@ -44,7 +44,7 @@ public class MonsterController {
         return ResponseEntity.ok("saved !");
     }
 
-    @GetMapping("/{monster}")
+    @GetMapping("/{type}")
     public ResponseEntity<List<MonsterJsonDto>> getMonsters(@PathVariable String type) {
         List<MonsterJsonDto> monstersByType = monsterService.findMonstersByType(type)
                 .stream()
@@ -59,4 +59,6 @@ public class MonsterController {
         return ResponseEntity.ok(monstersByType);
     }
 
+
 }
+
