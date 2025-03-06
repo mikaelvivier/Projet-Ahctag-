@@ -4,6 +4,6 @@ public enum Type {
 
     FEU,
     EAU,
-    PLANTE
+    VENT
 
 }

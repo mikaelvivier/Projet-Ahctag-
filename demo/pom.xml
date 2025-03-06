@@ -67,6 +67,18 @@
 			<scope>test</scope>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>6.2.4.Final</version> <!-- Version appropriée selon votre contexte -->
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>jakarta.el</artifactId>
+			<version>3.0.3</version> <!-- Nécessaire pour la validation par expressions -->
+		</dependency>
+
 	</dependencies>
 
 	<build>
