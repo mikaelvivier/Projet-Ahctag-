@@ -24,7 +24,6 @@ public class Player {
     private int lvl;
     private int requireXp;
     private int actualXp;
-    private List<Monster> monsters=new ArrayList<Monster>();
     private int maxList;
 
     public Player(String name, int lvl) {
@@ -57,10 +56,6 @@ public class Player {
         return actualXp;
     }
 
-    public List<Monster> getMonsters() {
-        return monsters;
-    }
-
     public int getMaxList() {
         return maxList;
     }
@@ -84,10 +79,6 @@ public class Player {
 
     public void setActualXp(int actualXp) {
         this.actualXp = actualXp;
-    }
-
-    public void setMonsters(List<Monster> monsters) {
-        this.monsters = monsters;
     }
 
     public void setMaxList(int maxList) {

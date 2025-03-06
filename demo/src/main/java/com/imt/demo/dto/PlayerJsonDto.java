@@ -3,7 +3,6 @@ package com.imt.demo.dto;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.imt.demo.model.Monster;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -26,7 +25,6 @@ public class PlayerJsonDto {
     @Min(1) private int requireXp;
     @Min(1) private int actualXp;
     @Min(1) private int maxList;
-    @JsonProperty("monsters") private List<Monster> monsters;
 
     // Getters
     public String getName() {
@@ -49,9 +47,6 @@ public class PlayerJsonDto {
         return maxList;
     }
 
-    public List<Monster> getMonsters() {
-        return monsters;
-    }
 
     // Setters
     public void setName(String name) {
@@ -74,8 +69,5 @@ public class PlayerJsonDto {
         this.maxList = maxList;
     }
 
-    public void setMonsters(List<Monster> monsters) {
-        this.monsters = monsters;
-    }
 
 }

@@ -24,6 +24,11 @@ public class PlayerController {
         this.playerService = playerService;
     }
 
+    @GetMapping("/")
+    public ResponseEntity<String> sayHello() {
+        return ResponseEntity.ok("saved !");
+    }
+
     @PostMapping("/save")
     public ResponseEntity<String> createPlayer(@Valid @RequestBody PlayerJsonDto player) {
         playerService.savePlayer(
