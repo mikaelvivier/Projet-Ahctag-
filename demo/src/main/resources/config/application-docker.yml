@@ -1,9 +1,9 @@
 spring:
   data:
     mongodb:
-      host: mongo-demo
+      host: mongo
       port: 27017
       username: mongoadmin
       password: password
       authentication-database: admin
-      database: demodb
+      database: db

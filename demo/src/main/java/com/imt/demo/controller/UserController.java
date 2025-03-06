@@ -10,7 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 @RestController
-@RequestMapping("api/v1/user")
+@RequestMapping("auth")
 public class UserController {
     private UserService userService;
     private JwtGeneratorInterface jwtGenerator;
