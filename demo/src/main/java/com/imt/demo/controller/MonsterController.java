@@ -4,15 +4,20 @@ import com.imt.demo.dto.MonsterJsonDto;
 import com.imt.demo.dto.Type;
 import com.imt.demo.service.MonsterService;
 import com.imt.demo.model.Monster;
+import com.imt.demo.service.TokenValidationService;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.Jwts;
 import jakarta.validation.Valid;
+import org.apache.catalina.realm.AuthenticatedUserRealm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.beans.factory.annotation.Value;
 
+import javax.naming.AuthenticationException;
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -21,44 +26,55 @@ public class MonsterController {
 
     private final MonsterService monsterService;
 
+    @Value("${jwt.secret}")
+    private String secretKey;
+
+    @Autowired
+    private TokenValidationService tokenValidationService;
+
     public MonsterController(MonsterService monsterService) {
         this.monsterService = monsterService;
     }
 
-    @GetMapping("/")
-    public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("saved !");
-    }
 
     @PostMapping("/save")
-    public ResponseEntity<String> createMonster(@Valid @RequestBody MonsterJsonDto monster) {
-        monsterService.saveMonster(
-                new Monster(
-                        monster.getType(),
-                        monster.getHp(),
-                        monster.getAtk(),
-                        monster.getDef(),
-                        monster.getVit())
-        );
+    public ResponseEntity<String> createMonster(@RequestHeader("Authorization") String authHeader, @Valid @RequestBody MonsterJsonDto monster) {
+        try {
+            tokenValidationService.authenticate(authHeader);
+            monsterService.saveMonster(
+                    new Monster(
+                            monster.getType(),
+                            monster.getHp(),
+                            monster.getAtk(),
+                            monster.getDef(),
+                            monster.getVit())
+            );
 
-        return ResponseEntity.ok("saved !");
+            return ResponseEntity.ok("saved !");
+
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
     }
 
     @GetMapping("/{type}")
-    public ResponseEntity<List<MonsterJsonDto>> getMonsters(@PathVariable String type) {
-        List<MonsterJsonDto> monstersByType = monsterService.findMonstersByType(type)
-                .stream()
-                .map(monster -> new MonsterJsonDto(
-                        Type.valueOf(String.valueOf(monster.getType())),
-                        monster.getHp(),
-                        monster.getAtk(),
-                        monster.getDef(),
-                        monster.getVit()))
-                .toList();
+    public ResponseEntity<List<MonsterJsonDto>> getMonsters(@RequestHeader("Authorization") String authHeader, @PathVariable String type) {
+        try {
+            tokenValidationService.authenticate(authHeader);
+            List<MonsterJsonDto> monstersByType = monsterService.findMonstersByType(type)
+                    .stream()
+                    .map(monster -> new MonsterJsonDto(
+                            Type.valueOf(String.valueOf(monster.getType())),
+                            monster.getHp(),
+                            monster.getAtk(),
+                            monster.getDef(),
+                            monster.getVit()))
+                    .toList();
 
-        return ResponseEntity.ok(monstersByType);
+            return ResponseEntity.ok(monstersByType);
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(Collections.emptyList());
+        }
     }
-
-
 }
 
