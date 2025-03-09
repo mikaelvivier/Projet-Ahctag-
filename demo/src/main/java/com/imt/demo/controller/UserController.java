@@ -4,6 +4,7 @@ import com.imt.demo.config.JwtGeneratorImpl;
 import com.imt.demo.config.JwtGeneratorInterface;
 import com.imt.demo.exception.UserNotFoundException;
 import com.imt.demo.model.User;
+import com.imt.demo.service.JwtService;
 import com.imt.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,11 +15,20 @@ import org.springframework.web.bind.annotation.*;
 public class UserController {
     private UserService userService;
     private JwtGeneratorInterface jwtGenerator;
+    private JwtService jwtService;
+
     @Autowired
-    public UserController(UserService userService, JwtGeneratorInterface jwtGenerator){
+    public UserController(UserService userService, JwtGeneratorInterface jwtGenerator, JwtService jwtService) {
         this.userService=userService;
         this.jwtGenerator=jwtGenerator;
+        this.jwtService=jwtService;
     }
+
+    @GetMapping("/validate-token")
+    public boolean isTokenValid(@RequestParam String token) {
+        return jwtService.isTokenValid(token);
+    }
+
     @PostMapping("/register")
     public ResponseEntity<?> postUser(@RequestBody User user){
         try{
@@ -28,6 +38,7 @@ public class UserController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         }
     }
+
     @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody User user) {
         try {
