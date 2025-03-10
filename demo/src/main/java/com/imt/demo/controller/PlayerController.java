@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/player")
@@ -42,9 +43,13 @@ public class PlayerController {
         return ResponseEntity.ok("saved !");
     }
 
-    @GetMapping("/show")
-    public ResponseEntity<String> show() {
-
+    @GetMapping("/show/{id}")
+    public ResponseEntity<Player> show(@PathVariable UUID id) {
+        Player player = playerService.getPlayerById(id);
+        if (player == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(player);
     }
 
 
