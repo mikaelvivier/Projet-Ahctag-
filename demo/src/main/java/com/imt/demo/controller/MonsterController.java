@@ -26,9 +26,6 @@ public class MonsterController {
 
     private final MonsterService monsterService;
 
-    @Value("${jwt.secret}")
-    private String secretKey;
-
     @Autowired
     private TokenValidationService tokenValidationService;
 
