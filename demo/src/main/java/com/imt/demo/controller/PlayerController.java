@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -45,11 +46,43 @@ public class PlayerController {
 
     @GetMapping("/show/{id}")
     public ResponseEntity<Player> show(@PathVariable UUID id) {
+        try {
+            Player player = playerService.getPlayerById(id);
+            if (player == null) {
+                return ResponseEntity.notFound().build();
+            }
+            return ResponseEntity.ok(player);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseEntity.internalServerError().body(null);
+        }
+    }
+
+    @GetMapping("/show/monster_list/{id}")
+    public List<String> showMonsterList(@PathVariable UUID id) {
         Player player = playerService.getPlayerById(id);
         if (player == null) {
-            return ResponseEntity.notFound().build();
+            return Collections.emptyList();
         }
-        return ResponseEntity.ok(player);
+        return player.getMonsters();
+    }
+
+    @GetMapping("/show/level/{id}")
+    public int showLevel(@PathVariable UUID id) {
+        Player player = playerService.getPlayerById(id);
+        if (player == null) {
+            return -1;
+        }
+        return player.getLvl();
+    }
+
+    @PostMapping("/add_exp/{id}/{exp}")
+    public void addExp(@PathVariable UUID id, int exp) {
+        Player player = playerService.getPlayerById(id);
+        if (player == null) {
+            return;
+        }
+        player.setActualXp(player.getActualXp() + exp);
     }
 
 
