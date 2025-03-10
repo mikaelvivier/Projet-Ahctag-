@@ -82,7 +82,7 @@ public class PlayerController {
         if (player == null) {
             return;
         }
-        player.setActualXp(player.getActualXp() + exp);
+        player.setActualXp(exp);
     }
 
 

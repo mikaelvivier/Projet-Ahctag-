@@ -12,20 +12,27 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-@Setter
 @Getter
+@Setter
 @Document
 @NoArgsConstructor
 @AllArgsConstructor
 public class Player {
 
+    // Getters
+    // Setters
+    @Setter
     @MongoId
     private UUID id;
+    @Setter
     private String name;
+    @Setter
     private int lvl;
+    @Setter
     private int requireXp;
     private int actualXp;
     private int maxList;
+    @Setter
     @DBRef
     private List<String> monsters=new ArrayList<>();
 
@@ -37,59 +44,21 @@ public class Player {
         this.requireXp = (int) Math.round(50 * Math.pow(1.1, lvl - 1));
         this.maxList = lvl + 9;
     }
-    
-    // Getters
-    public UUID getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getLvl() {
-        return lvl;
-    }
-
-    public int getRequireXp() {
-        return requireXp;
-    }
-
-    public int getActualXp() {
-        return actualXp;
-    }
-
-    public List<String> getMonsters() {
-        return monsters;
-    }
-
-    public int getMaxList() {
-        return maxList;
-    }
-
-    // Setters
-    public void setId(UUID id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setLvl(int lvl) {
-        this.lvl = lvl;
-    }
-
-    public void setRequireXp(int requireXp) {
-        this.requireXp = requireXp;
-    }
 
     public void setActualXp(int actualXp) {
-        this.actualXp = actualXp;
+        if ((this.actualXp + actualXp) > this.requireXp){
+            this.upLevel();
+            this.actualXp = this.actualXp + actualXp - this.requireXp;
+        }
+        else {
+            this.actualXp += actualXp;
+        }
     }
 
-    public void setMonsters(List<String> monsters) {
-        this.monsters = monsters;
+    public void upLevel(){
+        this.lvl += 1;
+        this.requireXp = (int) Math.ceil(this.requireXp * 1.1);
+        this.maxList += 1;
     }
 
     public void addMonster(String id){
@@ -100,9 +69,6 @@ public class Player {
         this.monsters.remove(id);
     }
 
-    public void setMaxList(int maxList) {
-        this.maxList = maxList;
-    }
 
 
     
