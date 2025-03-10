@@ -1,0 +1,1561 @@
+Index: demo/src/main/java/com/imt/demo/ApiApplication.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.imt.demo;\r\n\r\nimport org.springframework.boot.SpringApplication;\r\nimport org.springframework.boot.autoconfigure.SpringBootApplication;\r\n\r\n@SpringBootApplication\r\npublic class ApiApplication {\r\n\r\n\tpublic static void main(String[] args) {\r\n\t\tSpringApplication.run(ApiApplication.class, args);\r\n\t}\r\n\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/ApiApplication.java b/demo/src/main/java/com/imt/demo/ApiApplication.java
+--- a/demo/src/main/java/com/imt/demo/ApiApplication.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ b/demo/src/main/java/com/imt/demo/ApiApplication.java	(date 1741097963282)
+@@ -2,8 +2,10 @@
+ 
+ import org.springframework.boot.SpringApplication;
+ import org.springframework.boot.autoconfigure.SpringBootApplication;
++import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+ 
+ @SpringBootApplication
++@EnableMongoRepositories(basePackages = "com.imt.demo.dao")
+ public class ApiApplication {
+ 
+ 	public static void main(String[] args) {
+Index: demo/pom.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"\r\n\txsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">\r\n\t<modelVersion>4.0.0</modelVersion>\r\n\t<parent>\r\n\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t<artifactId>spring-boot-starter-parent</artifactId>\r\n\t\t<version>3.4.1</version>\r\n\t\t<relativePath/> <!-- lookup parent from repository -->\r\n\t</parent>\r\n\t<groupId>com.imt</groupId>\r\n\t<artifactId>demo</artifactId>\r\n\t<version>0.0.1-SNAPSHOT</version>\r\n\t<name>api</name>\r\n\t<description>Demo project for Spring Boot</description>\r\n\t<url/>\r\n\t<licenses>\r\n\t\t<license/>\r\n\t</licenses>\r\n\t<developers>\r\n\t\t<developer/>\r\n\t</developers>\r\n\t<scm>\r\n\t\t<connection/>\r\n\t\t<developerConnection/>\r\n\t\t<tag/>\r\n\t\t<url/>\r\n\t</scm>\r\n\t<properties>\r\n\t\t<java.version>21</java.version>\r\n\t\t<maven.compiler.source>21</maven.compiler.source>\r\n\t\t<maven.compiler.target>21</maven.compiler.target>\r\n\t</properties>\r\n\t<dependencies>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-data-mongodb</artifactId>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-web</artifactId>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-devtools</artifactId>\r\n\t\t\t<scope>runtime</scope>\r\n\t\t\t<optional>true</optional>\r\n\t\t</dependency>\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.projectlombok</groupId>\r\n\t\t\t<artifactId>lombok</artifactId>\r\n\t\t\t<version>1.18.36</version>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springdoc</groupId>\r\n\t\t\t<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>\r\n\t\t\t<version>2.7.0</version>\r\n\t\t</dependency>\r\n\r\n\t\t<dependency>\r\n\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t<artifactId>spring-boot-starter-test</artifactId>\r\n\t\t\t<scope>test</scope>\r\n\t\t</dependency>\r\n\t</dependencies>\r\n\r\n\t<build>\r\n\t\t<plugins>\r\n\t\t\t<plugin>\r\n\t\t\t\t<groupId>org.apache.maven.plugins</groupId>\r\n\t\t\t\t<artifactId>maven-compiler-plugin</artifactId>\r\n\t\t\t\t<configuration>\r\n\t\t\t\t\t<annotationProcessorPaths>\r\n\t\t\t\t\t\t<path>\r\n\t\t\t\t\t\t\t<groupId>org.projectlombok</groupId>\r\n\t\t\t\t\t\t\t<artifactId>lombok</artifactId>\r\n\t\t\t\t\t\t</path>\r\n\t\t\t\t\t</annotationProcessorPaths>\r\n\t\t\t\t</configuration>\r\n\t\t\t</plugin>\r\n\t\t\t<plugin>\r\n\t\t\t\t<groupId>org.springframework.boot</groupId>\r\n\t\t\t\t<artifactId>spring-boot-maven-plugin</artifactId>\r\n\t\t\t\t<configuration>\r\n\t\t\t\t\t<excludes>\r\n\t\t\t\t\t\t<exclude>\r\n\t\t\t\t\t\t\t<groupId>org.projectlombok</groupId>\r\n\t\t\t\t\t\t\t<artifactId>lombok</artifactId>\r\n\t\t\t\t\t\t</exclude>\r\n\t\t\t\t\t</excludes>\r\n\t\t\t\t</configuration>\r\n\t\t\t</plugin>\r\n\t\t</plugins>\r\n\t</build>\r\n\r\n</project>\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/pom.xml b/demo/pom.xml
+--- a/demo/pom.xml	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ b/demo/pom.xml	(date 1741100450866)
+@@ -27,9 +27,9 @@
+ 		<url/>
+ 	</scm>
+ 	<properties>
+-		<java.version>21</java.version>
+-		<maven.compiler.source>21</maven.compiler.source>
+-		<maven.compiler.target>21</maven.compiler.target>
++		<java.version>17</java.version>
++		<maven.compiler.source>17</maven.compiler.source>
++		<maven.compiler.target>17</maven.compiler.target>
+ 	</properties>
+ 	<dependencies>
+ 		<dependency>
+@@ -64,6 +64,39 @@
+ 			<artifactId>spring-boot-starter-test</artifactId>
+ 			<scope>test</scope>
+ 		</dependency>
++
++		<dependency>
++			<groupId>org.springframework.boot</groupId>
++			<artifactId>spring-boot-starter-security</artifactId>
++		</dependency>
++		<!-- JXT dependencies -->
++		<dependency>
++			<groupId>io.jsonwebtoken</groupId>
++			<artifactId>jjwt-api</artifactId>
++			<version>0.11.5</version>
++		</dependency>
++		<dependency>
++			<groupId>io.jsonwebtoken</groupId>
++			<artifactId>jjwt-impl</artifactId>
++			<version>0.11.5</version>
++		</dependency>
++		<dependency>
++			<groupId>io.jsonwebtoken</groupId>
++			<artifactId>jjwt-jackson</artifactId>
++			<version>0.11.5</version>
++		</dependency>
++
++		<dependency>
++			<groupId>org.hibernate.validator</groupId>
++			<artifactId>hibernate-validator</artifactId>
++			<version>8.0.1.Final</version>
++		</dependency>
++		<dependency>
++			<groupId>org.glassfish</groupId>
++			<artifactId>jakarta.el</artifactId>
++			<version>4.0.2</version>
++		</dependency>
++
+ 	</dependencies>
+ 
+ 	<build>
+@@ -92,6 +125,16 @@
+ 					</excludes>
+ 				</configuration>
+ 			</plugin>
++
++			<plugin>
++				<groupId>org.apache.maven.plugins</groupId>
++				<artifactId>maven-resources-plugin</artifactId>
++				<version>3.1.0</version>
++				<configuration>
++					<encoding>UTF-8</encoding>
++				</configuration>
++			</plugin>
++
+ 		</plugins>
+ 	</build>
+ 
+Index: demo/src/main/java/com/imt/demo/controller/CarController.java
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/controller/CarController.java b/demo/src/main/java/com/imt/demo/controller/CarController.java
+deleted file mode 100644
+--- a/demo/src/main/java/com/imt/demo/controller/CarController.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ /dev/null	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
+@@ -1,50 +0,0 @@
+-package com.imt.demo.controller;
+-
+-import com.imt.demo.dto.Brand;
+-import com.imt.demo.dto.CarJsonDto;
+-import com.imt.demo.service.CarService;
+-import com.imt.demo.model.Car;
+-import jakarta.validation.Valid;
+-import org.springframework.http.ResponseEntity;
+-import org.springframework.web.bind.annotation.GetMapping;
+-import org.springframework.web.bind.annotation.PathVariable;
+-import org.springframework.web.bind.annotation.PostMapping;
+-import org.springframework.web.bind.annotation.RequestBody;
+-import org.springframework.web.bind.annotation.RequestMapping;
+-import org.springframework.web.bind.annotation.RestController;
+-
+-import java.util.List;
+-
+-@RestController
+-@RequestMapping("/car")
+-public class CarController {
+-    
+-    private final CarService carService;
+-
+-    public CarController(CarService carService) {
+-        this.carService = carService;
+-    }
+-
+-    @PostMapping("/save")
+-    public ResponseEntity<String> createCar(@Valid @RequestBody CarJsonDto car) {
+-        carService.saveCar(
+-            new Car(
+-                car.getBrand().toString(),
+-                car.getColor(),
+-                car.getHorsePower())
+-        );
+-        
+-        return ResponseEntity.ok("saved !");
+-    }
+-    
+-    @GetMapping("/{brand}")
+-    public ResponseEntity<List<CarJsonDto>> getCars(@PathVariable String brand) {
+-        List<CarJsonDto> carsByBrand = carService.findCarsByBrand(brand)
+-                .stream()
+-                .map(car -> new CarJsonDto(Brand.valueOf(car.getBrand()), car.getColor(), car.getHorsePower()))
+-                .toList();
+-        
+-        return ResponseEntity.ok(carsByBrand);
+-    }
+-    
+-}
+Index: demo/src/main/java/com/imt/demo/dto/CarJsonDto.java
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/dto/CarJsonDto.java b/demo/src/main/java/com/imt/demo/dto/CarJsonDto.java
+deleted file mode 100644
+--- a/demo/src/main/java/com/imt/demo/dto/CarJsonDto.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ /dev/null	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
+@@ -1,35 +0,0 @@
+-package com.imt.demo.dto;
+-
+-import jakarta.validation.constraints.Min;
+-import jakarta.validation.constraints.NotBlank;
+-import jakarta.validation.constraints.NotNull;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-
+-@Setter
+-@NoArgsConstructor
+-public class CarJsonDto {
+-    
+-    @NotNull private Brand brand;
+-    @NotBlank private String color;
+-    @Min(50) private int horsePower;
+-
+-    public Brand getBrand() {
+-        return brand;
+-    }
+-
+-    public String getColor() {
+-        return color;
+-    }
+-
+-    public int getHorsePower() {
+-        return horsePower;
+-    }
+-
+-    public CarJsonDto(Brand brand, String color, int horsePower) {
+-        this.brand = brand;
+-        this.color = color;
+-        this.horsePower = horsePower;
+-    }
+-    
+-}
+Index: demo/src/main/java/com/imt/demo/model/Car.java
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/model/Car.java b/demo/src/main/java/com/imt/demo/model/Car.java
+deleted file mode 100644
+--- a/demo/src/main/java/com/imt/demo/model/Car.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ /dev/null	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
+@@ -1,32 +0,0 @@
+-package com.imt.demo.model;
+-
+-import lombok.AllArgsConstructor;
+-import lombok.Getter;
+-import lombok.NoArgsConstructor;
+-import lombok.Setter;
+-import org.springframework.data.mongodb.core.mapping.Document;
+-import org.springframework.data.mongodb.core.mapping.MongoId;
+-
+-import java.util.UUID;
+-
+-@Setter
+-@Getter
+-@Document
+-@NoArgsConstructor
+-@AllArgsConstructor
+-public class Car {
+-
+-    @MongoId
+-    private UUID id;
+-    private String brand;
+-    private String color;
+-    private int horsePower;
+-
+-    public Car(String brand, String color, int horsePower) {
+-        this.id = UUID.randomUUID();
+-        this.brand = brand;
+-        this.color = color;
+-        this.horsePower = horsePower;
+-    }
+-    
+-}
+Index: demo/src/main/java/com/imt/demo/dao/CarDao.java
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/dao/CarDao.java b/demo/src/main/java/com/imt/demo/dao/CarDao.java
+deleted file mode 100644
+--- a/demo/src/main/java/com/imt/demo/dao/CarDao.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ /dev/null	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
+@@ -1,15 +0,0 @@
+-package com.imt.demo.dao;
+-
+-import com.imt.demo.model.Car;
+-import org.springframework.data.mongodb.repository.MongoRepository;
+-import org.springframework.stereotype.Repository;
+-
+-import java.util.List;
+-import java.util.UUID;
+-
+-@Repository
+-public interface CarDao extends MongoRepository<Car, UUID> {
+-    
+-    List<Car> findAllByBrand(String brand);
+-    
+-}
+Index: demo/src/main/java/com/imt/demo/service/CarService.java
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/service/CarService.java b/demo/src/main/java/com/imt/demo/service/CarService.java
+deleted file mode 100644
+--- a/demo/src/main/java/com/imt/demo/service/CarService.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ /dev/null	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
+@@ -1,26 +0,0 @@
+-package com.imt.demo.service;
+-
+-import com.imt.demo.dao.CarDao;
+-import com.imt.demo.model.Car;
+-import org.springframework.stereotype.Service;
+-
+-import java.util.List;
+-
+-@Service
+-public class CarService {
+-    
+-    private final CarDao carDao;
+-
+-    public CarService(CarDao cardao) {
+-        this.carDao = cardao;
+-    }
+-
+-    public void saveCar(Car car) {
+-        carDao.save(car);
+-    }
+-
+-    public List<Car> findCarsByBrand(String brand) {
+-        return carDao.findAllByBrand(brand);
+-    }
+-    
+-}
+Index: demo/src/main/java/com/imt/demo/configs/SecurityConfiguration.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/configs/SecurityConfiguration.java b/demo/src/main/java/com/imt/demo/configs/SecurityConfiguration.java
+new file mode 100644
+--- /dev/null	(date 1741100450869)
++++ b/demo/src/main/java/com/imt/demo/configs/SecurityConfiguration.java	(date 1741100450869)
+@@ -0,0 +1,84 @@
++package com.imt.demo.configs;
++
++
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.security.authentication.AuthenticationProvider;
++import org.springframework.security.config.annotation.web.builders.HttpSecurity;
++import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
++import org.springframework.security.config.http.SessionCreationPolicy;
++import org.springframework.security.web.SecurityFilterChain;
++import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
++import org.springframework.web.cors.CorsConfiguration;
++import org.springframework.web.cors.CorsConfigurationSource;
++import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
++
++import java.util.List;
++
++/*
++CSRF (Cross-Site Request Forgery) est une vulnérabilité de sécurité web qui permet à un
++attaquant de réaliser des actions indésirables au nom d'un utilisateur authentifié sur une
++autre application. Cela se produit lorsque l'utilisateur est authentifié sur une application
++légitime et qu'une requête malveillante est envoyée à cette application sans son consentement.
++
++Fonctionnement de CSRF Protection
++La protection contre CSRF garantit que seulement les requêtes intentionnelles effectuées
++ par les utilisateurs légitimes sont acceptées par les applications.
++ */
++
++@Configuration
++@EnableWebSecurity
++/**
++ * Définit quel critère une requête à venir doit matcher avant d'être envoyée au
++ * middleware (intergiciel) de l'appli.
++ * Si une requête est envoyée à /auth/signup et /auth/login, l'auth n'est pas nécessaire
++ * requête stateless
++ * Doit utiliser l'authentication provider
++ * Le Cross-Origin Resource Sharing (CORS) ne prend que les requêtes GET et POST
++ */
++public class SecurityConfiguration {
++    private final AuthenticationProvider authenticationProvider;
++    private final JwtAuthenticationFilter jwtAuthenticationFilter;
++
++    public SecurityConfiguration(
++            JwtAuthenticationFilter jwtAuthenticationFilter,
++            AuthenticationProvider authenticationProvider
++    ) {
++        this.authenticationProvider = authenticationProvider;
++        this.jwtAuthenticationFilter = jwtAuthenticationFilter;
++    }
++
++    @Bean
++    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
++        http.csrf()
++                .disable()
++                .authorizeHttpRequests()
++                .requestMatchers("/auth/**")
++                .permitAll()
++                .anyRequest()
++                .authenticated()
++                .and()
++                .sessionManagement()
++                .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
++                .and()
++                .authenticationProvider(authenticationProvider)
++                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
++
++        return http.build();
++    }
++
++    @Bean
++    CorsConfigurationSource corsConfigurationSource() {
++        CorsConfiguration configuration = new CorsConfiguration();
++
++        configuration.setAllowedOrigins(List.of("http://localhost:8005"));
++        configuration.setAllowedMethods(List.of("GET","POST"));
++        configuration.setAllowedHeaders(List.of("Authorization","Content-Type"));
++
++        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
++
++        source.registerCorsConfiguration("/**",configuration);
++
++        return source;
++    }
++}
+\ No newline at end of file
+Index: .idea/.gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/.gitignore b/.idea/.gitignore
+new file mode 100644
+--- /dev/null	(date 1740480162791)
++++ b/.idea/.gitignore	(date 1740480162791)
+@@ -0,0 +1,8 @@
++# Default ignored files
++/shelf/
++/workspace.xml
++# Editor-based HTTP Client requests
++/httpRequests/
++# Datasource local storage ignored files
++/dataSources/
++/dataSources.local.xml
+Index: demo/src/main/java/com/imt/demo/dto/LoginUserDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/dto/LoginUserDto.java b/demo/src/main/java/com/imt/demo/dto/LoginUserDto.java
+new file mode 100644
+--- /dev/null	(date 1741100450873)
++++ b/demo/src/main/java/com/imt/demo/dto/LoginUserDto.java	(date 1741100450873)
+@@ -0,0 +1,27 @@
++package com.imt.demo.dto;
++
++import jakarta.validation.constraints.Email;
++import jakarta.validation.constraints.Pattern;
++import jakarta.validation.constraints.Size;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import org.springframework.validation.annotation.Validated;
++
++@Setter
++@Getter
++@AllArgsConstructor
++@NoArgsConstructor
++
++public class LoginUserDto {
++
++    @Email
++    @Size(max=100)
++    private String email;
++
++    @Size(min = 8, message = "Le mot de passe doit contenir au moins 8 caractères")
++    @Pattern(regexp = ".*\\d.*", message = "Le mot de passe doit contenir au moins un chiffre")
++    @Pattern(regexp = ".*[A-Z].*", message = "Le mot de passe doit contenir au moins une majuscule")
++    private String password;
++}
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/service/UserService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/service/UserService.java b/demo/src/main/java/com/imt/demo/service/UserService.java
+new file mode 100644
+--- /dev/null	(date 1741100450879)
++++ b/demo/src/main/java/com/imt/demo/service/UserService.java	(date 1741100450879)
+@@ -0,0 +1,26 @@
++package com.imt.demo.service;
++
++import com.imt.demo.dao.UserDao;
++import com.imt.demo.model.User;
++import org.springframework.stereotype.Service;
++
++import java.util.ArrayList;
++import java.util.List;
++
++@Service
++public class UserService {
++    
++    private final UserDao UserDao;
++
++    public UserService(UserDao Userdao) {
++        this.UserDao = Userdao;
++    }
++
++    public List<User> allUsers() {
++        List<User> users = new ArrayList<>();
++
++        UserDao.findAll().forEach(users::add);
++
++        return users;
++    }
++}
+Index: demo/src/main/java/com/imt/demo/controller/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/controller/UserController.java b/demo/src/main/java/com/imt/demo/controller/UserController.java
+new file mode 100644
+--- /dev/null	(date 1741100450871)
++++ b/demo/src/main/java/com/imt/demo/controller/UserController.java	(date 1741100450871)
+@@ -0,0 +1,38 @@
++package com.imt.demo.controller;
++
++import com.imt.demo.model.User;
++import com.imt.demo.service.UserService;
++import org.springframework.http.ResponseEntity;
++import org.springframework.security.core.Authentication;
++import org.springframework.security.core.context.SecurityContextHolder;
++import org.springframework.web.bind.annotation.GetMapping;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RestController;
++
++import java.util.List;
++
++@RequestMapping("/users")
++@RestController
++public class UserController {
++    private final UserService userService;
++
++    public UserController(UserService userService) {
++        this.userService = userService;
++    }
++
++    @GetMapping("/me")
++    public ResponseEntity<User> authenticatedUser() {
++        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
++
++        User currentUser = (User) authentication.getPrincipal();
++
++        return ResponseEntity.ok(currentUser);
++    }
++
++    @GetMapping("/")
++    public ResponseEntity<List<User>> allUsers() {
++        List <User> users = userService.allUsers();
++
++        return ResponseEntity.ok(users);
++    }
++}
+Index: demo/src/main/java/com/imt/demo/response/LoginResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/response/LoginResponse.java b/demo/src/main/java/com/imt/demo/response/LoginResponse.java
+new file mode 100644
+--- /dev/null	(date 1741100450876)
++++ b/demo/src/main/java/com/imt/demo/response/LoginResponse.java	(date 1741100450876)
+@@ -0,0 +1,23 @@
++package com.imt.demo.response;
++
++import lombok.Getter;
++import lombok.Setter;
++
++@Getter
++@Setter
++public class LoginResponse {
++    private String token;
++
++    private long expiresIn;
++
++    public LoginResponse setExpiresIn(long expiresIn){
++        this.expiresIn=expiresIn;
++        return this;
++    }
++
++    public LoginResponse setToken(String token){
++        this.token=token;
++        return this;
++    }
++}
++
+Index: demo/src/main/java/com/imt/demo/controller/AuthenticationController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/controller/AuthenticationController.java b/demo/src/main/java/com/imt/demo/controller/AuthenticationController.java
+new file mode 100644
+--- /dev/null	(date 1741100450870)
++++ b/demo/src/main/java/com/imt/demo/controller/AuthenticationController.java	(date 1741100450870)
+@@ -0,0 +1,45 @@
++package com.imt.demo.controller;
++
++import com.imt.demo.model.User;
++import com.imt.demo.dto.LoginUserDto;
++import com.imt.demo.dto.RegisterUserDto;
++import com.imt.demo.response.LoginResponse;
++import com.imt.demo.service.AuthenticationService;
++import com.imt.demo.service.JwtService;
++import jakarta.validation.Valid;
++import org.springframework.http.ResponseEntity;
++import org.springframework.web.bind.annotation.PostMapping;
++import org.springframework.web.bind.annotation.RequestBody;
++import org.springframework.web.bind.annotation.RequestMapping;
++import org.springframework.web.bind.annotation.RestController;
++
++@RequestMapping("/auth")
++@RestController
++public class AuthenticationController {
++    private final JwtService jwtService;
++
++    private final AuthenticationService authenticationService;
++
++    public AuthenticationController(JwtService jwtService, AuthenticationService authenticationService) {
++        this.jwtService = jwtService;
++        this.authenticationService = authenticationService;
++    }
++
++    @PostMapping("/signup")
++    public ResponseEntity<User> register(@Valid @RequestBody RegisterUserDto registerUserDto) {
++        User registeredUser = authenticationService.signup(registerUserDto);
++
++        return ResponseEntity.ok(registeredUser);
++    }
++
++    @PostMapping("/login")
++    public ResponseEntity<LoginResponse> authenticate(@Valid @RequestBody LoginUserDto loginUserDto) {
++        User authenticatedUser = authenticationService.authenticate(loginUserDto);
++
++        String jwtToken = jwtService.generateToken(authenticatedUser);
++
++        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
++
++        return ResponseEntity.ok(loginResponse);
++    }
++}
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/service/AuthenticationService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/service/AuthenticationService.java b/demo/src/main/java/com/imt/demo/service/AuthenticationService.java
+new file mode 100644
+--- /dev/null	(date 1741100450878)
++++ b/demo/src/main/java/com/imt/demo/service/AuthenticationService.java	(date 1741100450878)
+@@ -0,0 +1,50 @@
++package com.imt.demo.service;
++
++import com.imt.demo.dto.LoginUserDto;
++import com.imt.demo.dto.RegisterUserDto;
++import com.imt.demo.model.User;
++import com.imt.demo.dao.UserDao;
++import org.springframework.security.authentication.AuthenticationManager;
++import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
++import org.springframework.security.crypto.password.PasswordEncoder;
++import org.springframework.stereotype.Service;
++
++@Service
++public class AuthenticationService {
++    private final UserDao userDao;
++
++    private final PasswordEncoder passwordEncoder;
++
++    private final AuthenticationManager authenticationManager;
++
++    public AuthenticationService(
++            UserDao userDao,
++            AuthenticationManager authenticationManager,
++            PasswordEncoder passwordEncoder
++    ) {
++        this.authenticationManager = authenticationManager;
++        this.userDao = userDao;
++        this.passwordEncoder = passwordEncoder;
++    }
++
++    public User signup(RegisterUserDto input) {
++        User user = new User()
++                .setFullName(input.getFullName())
++                .setEmail(input.getEmail())
++                .setPassword(passwordEncoder.encode(input.getPassword()));
++
++        return userDao.save(user);
++    }
++
++    public User authenticate(LoginUserDto input) {
++        authenticationManager.authenticate(
++                new UsernamePasswordAuthenticationToken(
++                        input.getEmail(),
++                        input.getPassword()
++                )
++        );
++
++        return userDao.findByEmail(input.getEmail())
++                .orElseThrow();
++    }
++}
+\ No newline at end of file
+Index: .idea/modules.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/modules.xml b/.idea/modules.xml
+new file mode 100644
+--- /dev/null	(date 1741098004314)
++++ b/.idea/modules.xml	(date 1741098004314)
+@@ -0,0 +1,8 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ProjectModuleManager">
++    <modules>
++      <module fileurl="file://$PROJECT_DIR$/.idea/Projet-Ahctag-.iml" filepath="$PROJECT_DIR$/.idea/Projet-Ahctag-.iml" />
++    </modules>
++  </component>
++</project>
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/configs/ApplicationConfiguration.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/configs/ApplicationConfiguration.java b/demo/src/main/java/com/imt/demo/configs/ApplicationConfiguration.java
+new file mode 100644
+--- /dev/null	(date 1741100450868)
++++ b/demo/src/main/java/com/imt/demo/configs/ApplicationConfiguration.java	(date 1741100450868)
+@@ -0,0 +1,54 @@
++package com.imt.demo.configs;
++
++import com.imt.demo.dao.UserDao;
++import org.springframework.context.annotation.Bean;
++import org.springframework.context.annotation.Configuration;
++import org.springframework.security.authentication.AuthenticationManager;
++import org.springframework.security.authentication.AuthenticationProvider;
++import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
++import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
++import org.springframework.security.core.userdetails.UserDetailsService;
++import org.springframework.security.core.userdetails.UsernameNotFoundException;
++import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
++
++@Configuration
++/**
++ * Configure le contexte d'authentification avec le JWT à la place de l'auth HTTP.
++ * passwordEncoder chiffre le mdp utilisateur et authenticationProvider met en place la nouvelle stratégie d'authentification.
++ * Effectue l'authentification en cherchant l'utilisateur dans la BDD
++ * Génère le JWT quand l'authentification est bonne
++ *
++ */
++public class ApplicationConfiguration {
++    private final UserDao userDao;
++
++    public ApplicationConfiguration(UserDao userDao) {
++        this.userDao = userDao;
++    }
++
++    @Bean
++    UserDetailsService userDetailsService() {
++        return username -> userDao.findByEmail(username)
++                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
++    }
++
++    @Bean
++    BCryptPasswordEncoder passwordEncoder() {
++        return new BCryptPasswordEncoder();
++    }
++
++    @Bean
++    public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
++        return config.getAuthenticationManager();
++    }
++
++    @Bean
++    AuthenticationProvider authenticationProvider() {
++        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
++
++        authProvider.setUserDetailsService(userDetailsService());
++        authProvider.setPasswordEncoder(passwordEncoder());
++
++        return authProvider;
++    }
++}
+\ No newline at end of file
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+new file mode 100644
+--- /dev/null	(date 1741097963271)
++++ b/.idea/misc.xml	(date 1741097963271)
+@@ -0,0 +1,14 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="ExternalStorageConfigurationManager" enabled="true" />
++  <component name="MavenProjectsManager">
++    <option name="originalFiles">
++      <list>
++        <option value="$PROJECT_DIR$/demo/pom.xml" />
++      </list>
++    </option>
++  </component>
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_23" default="true" project-jdk-name="openjdk-23" project-jdk-type="JavaSDK">
++    <output url="file://$PROJECT_DIR$/out" />
++  </component>
++</project>
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/configs/JwtAuthenticationFilter.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/configs/JwtAuthenticationFilter.java b/demo/src/main/java/com/imt/demo/configs/JwtAuthenticationFilter.java
+new file mode 100644
+--- /dev/null	(date 1741100450868)
++++ b/demo/src/main/java/com/imt/demo/configs/JwtAuthenticationFilter.java	(date 1741100450868)
+@@ -0,0 +1,78 @@
++package com.imt.demo.configs;
++
++import com.imt.demo.service.JwtService;
++import jakarta.servlet.FilterChain;
++import jakarta.servlet.ServletException;
++import jakarta.servlet.http.HttpServletRequest;
++import jakarta.servlet.http.HttpServletResponse;
++import org.springframework.lang.NonNull;
++import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
++import org.springframework.security.core.Authentication;
++import org.springframework.security.core.context.SecurityContextHolder;
++import org.springframework.security.core.userdetails.UserDetails;
++import org.springframework.security.core.userdetails.UserDetailsService;
++import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
++import org.springframework.stereotype.Component;
++import org.springframework.web.filter.OncePerRequestFilter;
++import org.springframework.web.servlet.HandlerExceptionResolver;
++
++import java.io.IOException;
++
++@Component
++public class JwtAuthenticationFilter extends OncePerRequestFilter {
++    private final HandlerExceptionResolver handlerExceptionResolver;
++
++    private final JwtService jwtService;
++    private final UserDetailsService userDetailsService;
++
++    public JwtAuthenticationFilter(
++            JwtService jwtService,
++            UserDetailsService userDetailsService,
++            HandlerExceptionResolver handlerExceptionResolver
++    )
++    {
++        this.jwtService = jwtService;
++        this.userDetailsService = userDetailsService;
++        this.handlerExceptionResolver = handlerExceptionResolver;
++    }
++
++    @Override
++    protected void doFilterInternal(
++            @NonNull HttpServletRequest request,
++            @NonNull HttpServletResponse response,
++            @NonNull FilterChain filterChain
++    ) throws ServletException, IOException {
++        final String authHeader = request.getHeader("Authorization");
++
++        if (authHeader == null || !authHeader.startsWith("Bearer ")) {
++            filterChain.doFilter(request, response);
++            return;
++        }
++
++        try {
++            final String jwt = authHeader.substring(7);
++            final String userEmail = jwtService.extractUsername(jwt);
++
++            Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
++
++            if (userEmail != null && authentication == null) {
++                UserDetails userDetails = this.userDetailsService.loadUserByUsername(userEmail);
++
++                if (jwtService.isTokenValid(jwt, userDetails)) {
++                    UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
++                            userDetails,
++                            null,
++                            userDetails.getAuthorities()
++                    );
++
++                    authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
++                    SecurityContextHolder.getContext().setAuthentication(authToken);
++                }
++            }
++
++            filterChain.doFilter(request, response);
++        } catch (Exception exception) {
++            handlerExceptionResolver.resolveException(request, response, null, exception);
++        }
++    }
++}
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/service/JwtService.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/service/JwtService.java b/demo/src/main/java/com/imt/demo/service/JwtService.java
+new file mode 100644
+--- /dev/null	(date 1741100450879)
++++ b/demo/src/main/java/com/imt/demo/service/JwtService.java	(date 1741100450879)
+@@ -0,0 +1,88 @@
++package com.imt.demo.service;
++
++import io.jsonwebtoken.Claims;
++import io.jsonwebtoken.Jwts;
++import io.jsonwebtoken.SignatureAlgorithm;
++import io.jsonwebtoken.io.Decoders;
++import io.jsonwebtoken.security.Keys;
++import java.security.Key;
++import java.util.Date;
++import java.util.HashMap;
++import java.util.Map;
++import java.util.function.Function;
++
++import org.springframework.beans.factory.annotation.Value;
++import org.springframework.security.core.userdetails.UserDetails;
++import org.springframework.stereotype.Service;
++
++@Service
++public class JwtService {
++    @Value("${security.jwt.secret-key}")
++    private String secretKey;
++
++    @Value("${security.jwt.expiration-time}")
++    private long jwtExpiration;
++
++    public String extractUsername(String token) {
++        return extractClaim(token, Claims::getSubject);
++    }
++
++    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver) {
++        final Claims claims = extractAllClaims(token);
++        return claimsResolver.apply(claims);
++    }
++
++    public String generateToken(UserDetails userDetails) {
++        return generateToken(new HashMap<>(), userDetails);
++    }
++
++    public String generateToken(Map<String, Object> extraClaims, UserDetails userDetails) {
++        return buildToken(extraClaims, userDetails, jwtExpiration);
++    }
++
++    public long getExpirationTime() {
++        return jwtExpiration;
++    }
++
++    private String buildToken(
++            Map<String, Object> extraClaims,
++            UserDetails userDetails,
++            long expiration
++    ) {
++        return Jwts
++                .builder()
++                .setClaims(extraClaims)
++                .setSubject(userDetails.getUsername())
++                .setIssuedAt(new Date(System.currentTimeMillis()))
++                .setExpiration(new Date(System.currentTimeMillis() + expiration))
++                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
++                .compact();
++    }
++
++    public boolean isTokenValid(String token, UserDetails userDetails) {
++        final String username = extractUsername(token);
++        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
++    }
++
++    private boolean isTokenExpired(String token) {
++        return extractExpiration(token).before(new Date());
++    }
++
++    private Date extractExpiration(String token) {
++        return extractClaim(token, Claims::getExpiration);
++    }
++
++    private Claims extractAllClaims(String token) {
++        return Jwts
++                .parserBuilder()
++                .setSigningKey(getSignInKey())
++                .build()
++                .parseClaimsJws(token)
++                .getBody();
++    }
++
++    private Key getSignInKey() {
++        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
++        return Keys.hmacShaKeyFor(keyBytes);
++    }
++}
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/dto/RegisterUserDto.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/dto/RegisterUserDto.java b/demo/src/main/java/com/imt/demo/dto/RegisterUserDto.java
+new file mode 100644
+--- /dev/null	(date 1741100450873)
++++ b/demo/src/main/java/com/imt/demo/dto/RegisterUserDto.java	(date 1741100450873)
+@@ -0,0 +1,29 @@
++package com.imt.demo.dto;
++
++import jakarta.validation.constraints.*;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++
++//DTO (Data Transfer Object) est un objet utilisé
++// pour transférer des données entre les couches d'une application.
++
++@Setter
++@Getter
++@AllArgsConstructor
++@NoArgsConstructor
++public class RegisterUserDto {
++
++    @NotBlank
++    private String fullName;
++
++    @Email @Size(max=100)
++    private String email;
++
++    @Size(min = 8, message = "Le mot de passe doit contenir au moins 8 caractères")
++    @Pattern(regexp = ".*\\d.*", message = "Le mot de passe doit contenir au moins un chiffre")
++    @Pattern(regexp = ".*[A-Z].*", message = "Le mot de passe doit contenir au moins une majuscule")
++    private String password;
++
++}
+Index: demo/src/main/java/com/imt/demo/exception/GlobalExceptionHandler.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.imt.demo.exception;\r\n\r\nimport org.springframework.http.ResponseEntity;\r\nimport org.springframework.web.bind.annotation.ControllerAdvice;\r\nimport org.springframework.web.bind.annotation.ExceptionHandler;\r\n\r\n@ControllerAdvice(basePackages = {\"com.imt.demo.controller\"})\r\npublic class GlobalExceptionHandler {\r\n    \r\n    @ExceptionHandler(MyCustomException.class)\r\n    public ResponseEntity<String> manageRuntimeException() {\r\n        return ResponseEntity.internalServerError().build();\r\n    }\r\n    \r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/exception/GlobalExceptionHandler.java b/demo/src/main/java/com/imt/demo/exception/GlobalExceptionHandler.java
+--- a/demo/src/main/java/com/imt/demo/exception/GlobalExceptionHandler.java	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ b/demo/src/main/java/com/imt/demo/exception/GlobalExceptionHandler.java	(date 1741100450874)
+@@ -1,15 +1,57 @@
+ package com.imt.demo.exception;
+ 
+-import org.springframework.http.ResponseEntity;
+-import org.springframework.web.bind.annotation.ControllerAdvice;
++
++import io.jsonwebtoken.ExpiredJwtException;
++import io.jsonwebtoken.security.SignatureException;
++import org.springframework.http.HttpStatusCode;
++import org.springframework.http.ProblemDetail;
++import org.springframework.security.access.AccessDeniedException;
++import org.springframework.security.authentication.AccountStatusException;
++import org.springframework.security.authentication.BadCredentialsException;
+ import org.springframework.web.bind.annotation.ExceptionHandler;
++import org.springframework.web.bind.annotation.RestControllerAdvice;
+ 
+-@ControllerAdvice(basePackages = {"com.imt.demo.controller"})
++@RestControllerAdvice
+ public class GlobalExceptionHandler {
+-    
+-    @ExceptionHandler(MyCustomException.class)
+-    public ResponseEntity<String> manageRuntimeException() {
+-        return ResponseEntity.internalServerError().build();
+-    }
+-    
+-}
++    @ExceptionHandler(Exception.class)
++    public ProblemDetail handleSecurityException(Exception exception) {
++        ProblemDetail errorDetail = null;
++
++        // TODO send this stack trace to an observability tool
++        exception.printStackTrace();
++
++        if (exception instanceof BadCredentialsException) {
++            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(401), exception.getMessage());
++            errorDetail.setProperty("description", "The username or password is incorrect");
++
++            return errorDetail;
++        }
++
++        if (exception instanceof AccountStatusException) {
++            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
++            errorDetail.setProperty("description", "The account is locked");
++        }
++
++        if (exception instanceof AccessDeniedException) {
++            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
++            errorDetail.setProperty("description", "You are not authorized to access this resource");
++        }
++
++        if (exception instanceof SignatureException) {
++            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
++            errorDetail.setProperty("description", "The JWT signature is invalid");
++        }
++
++        if (exception instanceof ExpiredJwtException) {
++            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(403), exception.getMessage());
++            errorDetail.setProperty("description", "The JWT token has expired");
++        }
++
++        if (errorDetail == null) {
++            errorDetail = ProblemDetail.forStatusAndDetail(HttpStatusCode.valueOf(500), exception.getMessage());
++            errorDetail.setProperty("description", "Unknown internal server error.");
++        }
++
++        return errorDetail;
++    }
++}
+\ No newline at end of file
+Index: .idea/encodings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/encodings.xml b/.idea/encodings.xml
+new file mode 100644
+--- /dev/null	(date 1741097963269)
++++ b/.idea/encodings.xml	(date 1741097963269)
+@@ -0,0 +1,7 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Encoding">
++    <file url="file://$PROJECT_DIR$/demo/src/main/java" charset="UTF-8" />
++    <file url="file://$PROJECT_DIR$/demo/src/main/resources" charset="UTF-8" />
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/compiler.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/compiler.xml b/.idea/compiler.xml
+new file mode 100644
+--- /dev/null	(date 1741100534432)
++++ b/.idea/compiler.xml	(date 1741100534432)
+@@ -0,0 +1,22 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="CompilerConfiguration">
++    <annotationProcessing>
++      <profile default="true" name="Default" enabled="true" />
++      <profile name="Annotation profile for api" enabled="true">
++        <sourceOutputDir name="target/generated-sources/annotations" />
++        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
++        <outputRelativeToContentRoot value="true" />
++        <processorPath useClasspath="false">
++          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
++        </processorPath>
++        <module name="demo" />
++      </profile>
++    </annotationProcessing>
++  </component>
++  <component name="JavacSettings">
++    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
++      <module name="demo" options="-parameters" />
++    </option>
++  </component>
++</project>
+\ No newline at end of file
+Index: .idea/vcs.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/vcs.xml b/.idea/vcs.xml
+new file mode 100644
+--- /dev/null	(date 1740911695936)
++++ b/.idea/vcs.xml	(date 1740911695936)
+@@ -0,0 +1,6 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="VcsDirectoryMappings">
++    <mapping directory="" vcs="Git" />
++  </component>
++</project>
+\ No newline at end of file
+Index: demo/src/main/resources/config/application.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>spring.application.name=api\r\n\r\nspring.data.mongodb.uuid-representation=standard
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/demo/src/main/resources/config/application.properties b/demo/src/main/resources/config/application.properties
+--- a/demo/src/main/resources/config/application.properties	(revision 82d11fd6b6d16d46e5c273fae678a85231137c16)
++++ b/demo/src/main/resources/config/application.properties	(date 1741097963310)
+@@ -1,3 +1,13 @@
+ spring.application.name=api
+ 
+-spring.data.mongodb.uuid-representation=standard
+\ No newline at end of file
++#Permet à l'application SB de se connecter et intéragir à la mongoDB
++spring.data.mongodb.uri=mongodb://mongoadmin:password@mongo-demo:27017
++spring.data.mongodb.database=mongo-db
++
++security.jwt.secret-key=3cfa76ef14937c1c0ea519f8fc057a80fcd04a7420f8e8bcd0a7567c272e007b
++# 1h in millisecond
++security.jwt.expiration-time=3600000
++
++logging.level.org.springframework=DEBUG
++logging.level.org.springframework.web=DEBUG
++logging.level.org.springframework.security=DEBUG
+\ No newline at end of file
+Index: .idea/Projet-Ahctag-.iml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/Projet-Ahctag-.iml b/.idea/Projet-Ahctag-.iml
+new file mode 100644
+--- /dev/null	(date 1741097963268)
++++ b/.idea/Projet-Ahctag-.iml	(date 1741097963268)
+@@ -0,0 +1,9 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<module type="JAVA_MODULE" version="4">
++  <component name="NewModuleRootManager" inherit-compiler-output="true">
++    <exclude-output />
++    <content url="file://$MODULE_DIR$" />
++    <orderEntry type="inheritedJdk" />
++    <orderEntry type="sourceFolder" forTests="false" />
++  </component>
++</module>
+\ No newline at end of file
+Index: .idea/jarRepositories.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/jarRepositories.xml b/.idea/jarRepositories.xml
+new file mode 100644
+--- /dev/null	(date 1741097963270)
++++ b/.idea/jarRepositories.xml	(date 1741097963270)
+@@ -0,0 +1,25 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="RemoteRepositoriesConfiguration">
++    <remote-repository>
++      <option name="id" value="smd-delivery-nexus-group" />
++      <option name="name" value="smd-delivery-nexus-group" />
++      <option name="url" value="https://nexus.kazan.myworldline.com/repository/smd-delivery-nexus-group" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="Maven Central repository" />
++      <option name="url" value="https://repo1.maven.org/maven2" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="jboss.community" />
++      <option name="name" value="JBoss Community repository" />
++      <option name="url" value="https://repository.jboss.org/nexus/content/repositories/public/" />
++    </remote-repository>
++    <remote-repository>
++      <option name="id" value="central" />
++      <option name="name" value="central" />
++      <option name="url" value="https://nexus.kazan.myworldline.com/repository/tfis-shared-nexus-group" />
++    </remote-repository>
++  </component>
++</project>
+\ No newline at end of file
+Index: site pour décoder jwt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/site pour décoder jwt b/site pour décoder jwt
+new file mode 100644
+--- /dev/null	(date 1741097963313)
++++ b/site pour décoder jwt	(date 1741097963313)
+@@ -0,0 +1,1 @@
++https://jwt.io/
+\ No newline at end of file
+Index: Probleme JAVA_HOME mvn.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Probleme JAVA_HOME mvn.md b/Probleme JAVA_HOME mvn.md
+new file mode 100644
+--- /dev/null	(date 1741097963278)
++++ b/Probleme JAVA_HOME mvn.md	(date 1741097963278)
+@@ -0,0 +1,6 @@
++```PS
++$env:JAVA_HOME = "C:\javatools\java\openlogic-openjdk-17.0.13+11-windows-x64"
++$env:Path = "$env:JAVA_HOME\bin;" + $env:Path  
++PS C:\projets\imt\Projet-Ahctag-\demo> mvn clean install
++PS C:\projets\imt\Projet-Ahctag-\demo\docker-dev-env-imt> docker-compose up --build --force-recreate
++```
+\ No newline at end of file
+Index: Lien procédure JWT Authentification sur SB.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Lien procédure JWT Authentification sur SB.md b/Lien procédure JWT Authentification sur SB.md
+new file mode 100644
+--- /dev/null	(date 1741097963277)
++++ b/Lien procédure JWT Authentification sur SB.md	(date 1741097963277)
+@@ -0,0 +1,2 @@
++
++[procédure](https://medium.com/@tericcabrel/implement-jwt-authentication-in-a-spring-boot-3-application-5839e4fd8fac)
+\ No newline at end of file
+Index: .idea/uiDesigner.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/uiDesigner.xml b/.idea/uiDesigner.xml
+new file mode 100644
+--- /dev/null	(date 1741097963275)
++++ b/.idea/uiDesigner.xml	(date 1741097963275)
+@@ -0,0 +1,124 @@
++<?xml version="1.0" encoding="UTF-8"?>
++<project version="4">
++  <component name="Palette2">
++    <group name="Swing">
++      <item class="com.intellij.uiDesigner.HSpacer" tooltip-text="Horizontal Spacer" icon="/com/intellij/uiDesigner/icons/hspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="1" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="com.intellij.uiDesigner.VSpacer" tooltip-text="Vertical Spacer" icon="/com/intellij/uiDesigner/icons/vspacer.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="1" anchor="0" fill="2" />
++      </item>
++      <item class="javax.swing.JPanel" icon="/com/intellij/uiDesigner/icons/panel.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JScrollPane" icon="/com/intellij/uiDesigner/icons/scrollPane.svg" removable="false" auto-create-binding="false" can-attach-label="true">
++        <default-constraints vsize-policy="7" hsize-policy="7" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JButton" icon="/com/intellij/uiDesigner/icons/button.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="0" fill="1" />
++        <initial-values>
++          <property name="text" value="Button" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JRadioButton" icon="/com/intellij/uiDesigner/icons/radioButton.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="RadioButton" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JCheckBox" icon="/com/intellij/uiDesigner/icons/checkBox.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="3" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="CheckBox" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JLabel" icon="/com/intellij/uiDesigner/icons/label.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="8" fill="0" />
++        <initial-values>
++          <property name="text" value="Label" />
++        </initial-values>
++      </item>
++      <item class="javax.swing.JTextField" icon="/com/intellij/uiDesigner/icons/textField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JPasswordField" icon="/com/intellij/uiDesigner/icons/passwordField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JFormattedTextField" icon="/com/intellij/uiDesigner/icons/formattedTextField.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1">
++          <preferred-size width="150" height="-1" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextArea" icon="/com/intellij/uiDesigner/icons/textArea.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTextPane" icon="/com/intellij/uiDesigner/icons/textPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JEditorPane" icon="/com/intellij/uiDesigner/icons/editorPane.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JComboBox" icon="/com/intellij/uiDesigner/icons/comboBox.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="2" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JTable" icon="/com/intellij/uiDesigner/icons/table.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JList" icon="/com/intellij/uiDesigner/icons/list.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="2" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTree" icon="/com/intellij/uiDesigner/icons/tree.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3">
++          <preferred-size width="150" height="50" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JTabbedPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSplitPane" icon="/com/intellij/uiDesigner/icons/splitPane.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="3">
++          <preferred-size width="200" height="200" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JSpinner" icon="/com/intellij/uiDesigner/icons/spinner.svg" removable="false" auto-create-binding="true" can-attach-label="true">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSlider" icon="/com/intellij/uiDesigner/icons/slider.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="8" fill="1" />
++      </item>
++      <item class="javax.swing.JSeparator" icon="/com/intellij/uiDesigner/icons/separator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="6" anchor="0" fill="3" />
++      </item>
++      <item class="javax.swing.JProgressBar" icon="/com/intellij/uiDesigner/icons/progressbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JToolBar" icon="/com/intellij/uiDesigner/icons/toolbar.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="6" anchor="0" fill="1">
++          <preferred-size width="-1" height="20" />
++        </default-constraints>
++      </item>
++      <item class="javax.swing.JToolBar$Separator" icon="/com/intellij/uiDesigner/icons/toolbarSeparator.svg" removable="false" auto-create-binding="false" can-attach-label="false">
++        <default-constraints vsize-policy="0" hsize-policy="0" anchor="0" fill="1" />
++      </item>
++      <item class="javax.swing.JScrollBar" icon="/com/intellij/uiDesigner/icons/scrollbar.svg" removable="false" auto-create-binding="true" can-attach-label="false">
++        <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
++      </item>
++    </group>
++  </component>
++</project>
+\ No newline at end of file
+Index: demo/src/main/java/com/imt/demo/dao/UserDao.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/dao/UserDao.java b/demo/src/main/java/com/imt/demo/dao/UserDao.java
+new file mode 100644
+--- /dev/null	(date 1741099667695)
++++ b/demo/src/main/java/com/imt/demo/dao/UserDao.java	(date 1741099667695)
+@@ -0,0 +1,19 @@
++package com.imt.demo.dao;
++
++import com.imt.demo.model.User;
++import org.bson.types.ObjectId;
++import org.springframework.data.mongodb.repository.MongoRepository;
++import org.springframework.stereotype.Repository;
++
++import java.util.List;
++import java.util.Optional;
++
++//DAO (Data Access Object) est un objet ou une interface qui
++// fournit des méthodes pour interagir avec la base de données.
++
++@Repository
++public interface UserDao extends MongoRepository<User, ObjectId> {
++
++    Optional<User> findByEmail(String email);
++    
++}
+Index: demo/src/main/java/com/imt/demo/model/User.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/demo/src/main/java/com/imt/demo/model/User.java b/demo/src/main/java/com/imt/demo/model/User.java
+new file mode 100644
+--- /dev/null	(date 1741100450875)
++++ b/demo/src/main/java/com/imt/demo/model/User.java	(date 1741100450875)
+@@ -0,0 +1,100 @@
++package com.imt.demo.model;
++
++import jakarta.validation.constraints.Email;
++import jakarta.validation.constraints.NotBlank;
++import jakarta.validation.constraints.Pattern;
++import jakarta.validation.constraints.Size;
++import lombok.AllArgsConstructor;
++import lombok.Getter;
++import lombok.NoArgsConstructor;
++import lombok.Setter;
++import org.bson.types.ObjectId;
++import org.springframework.data.annotation.CreatedDate;
++import org.springframework.data.annotation.LastModifiedDate;
++import org.springframework.data.mongodb.core.mapping.Document;
++import org.springframework.data.mongodb.core.mapping.MongoId;
++import org.springframework.security.core.GrantedAuthority;
++import org.springframework.security.core.userdetails.UserDetails;
++
++import java.util.Collection;
++import java.util.Date;
++import java.util.List;
++
++@Setter
++@Getter
++@Document
++@NoArgsConstructor
++@AllArgsConstructor
++public class User implements UserDetails {
++
++    @MongoId
++    private ObjectId id;
++    private String fullName;
++    private String email;
++    private String password;
++    @CreatedDate
++    private Date createdAt;
++    @LastModifiedDate
++    private Date updatedAt;
++
++    public User(String fullName, String email, String password, Date createdAt, Date updatedAt) {
++        this.fullName = fullName;
++        this.email = email;
++        this.password = password;
++        this.createdAt = createdAt;
++        this.updatedAt = updatedAt;
++    }
++
++    public User(String fullName, String email, String password) {
++        this.fullName = fullName;
++        this.email = email;
++        this.password = password;
++
++    }
++
++    public User setFullName(String fullName) {
++        this.fullName = fullName;
++        return this;
++    }
++
++    public User setEmail(String email) {
++        this.email = email;
++        return this;
++    }
++
++    public User setPassword(String password) {
++        this.password = password;
++        return this;
++    }
++
++    @Override
++    public Collection<? extends GrantedAuthority> getAuthorities() {
++        return List.of();
++    }
++
++    @Override
++    public String getUsername() {
++        return email;
++    }
++
++    @Override
++    public boolean isAccountNonExpired() {
++        return true;
++    }
++
++    @Override
++    public boolean isAccountNonLocked() {
++        return true;
++    }
++
++    @Override
++    public boolean isCredentialsNonExpired() {
++        return true;
++    }
++
++    @Override
++    public boolean isEnabled() {
++        return true;
++    }
++
++}
