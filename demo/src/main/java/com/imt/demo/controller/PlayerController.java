@@ -1,6 +1,8 @@
 package com.imt.demo.controller;
 
+import com.imt.demo.dao.PlayerDao;
 import com.imt.demo.dto.PlayerJsonDto;
+import com.imt.demo.model.Monster;
 import com.imt.demo.service.PlayerService;
 import com.imt.demo.model.Player;
 import jakarta.validation.Valid;
@@ -39,5 +41,13 @@ public class PlayerController {
         
         return ResponseEntity.ok("saved !");
     }
+
+    @GetMapping("/show")
+    public ResponseEntity<String> show() {
+
+    }
+
+
+
     
 }

@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.MongoId;
 
@@ -25,6 +26,8 @@ public class Player {
     private int requireXp;
     private int actualXp;
     private int maxList;
+    @DBRef
+    private List<String> monsters=new ArrayList<>();
 
     public Player(String name, int lvl) {
         this.id = UUID.randomUUID();
@@ -56,6 +59,10 @@ public class Player {
         return actualXp;
     }
 
+    public List<String> getMonsters() {
+        return monsters;
+    }
+
     public int getMaxList() {
         return maxList;
     }
@@ -79,6 +86,18 @@ public class Player {
 
     public void setActualXp(int actualXp) {
         this.actualXp = actualXp;
+    }
+
+    public void setMonsters(List<String> monsters) {
+        this.monsters = monsters;
+    }
+
+    public void addMonster(String id){
+        this.monsters.add(id);
+    }
+
+    public void removeMonster(String id){
+        this.monsters.remove(id);
     }
 
     public void setMaxList(int maxList) {

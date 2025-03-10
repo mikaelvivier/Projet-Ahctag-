@@ -1,28 +1,23 @@
 package com.imt.demo.service;
 
-import com.imt.demo.dao.MonsterDao;
-import com.imt.demo.model.Monster;
 import com.imt.demo.model.Monster;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.publisher.Mono;
 
 @Service
 public class MonsterService {
 
-    private final MonsterDao monsterDao;
+    private final WebClient webClient;
 
-    public MonsterService(MonsterDao monsterdao) {
-        this.monsterDao = monsterdao;
+    public MonsterService(WebClient.Builder webClientBuilder) {
+        this.webClient = webClientBuilder.baseUrl("http://localhost:8081").build();
     }
 
-    public void saveMonster(Monster monster) {
-        monsterDao.save(monster);
+    public Mono<Monster> getMonsterById(String monsterId) {
+        return webClient.get()
+                .uri("/monster/" + monsterId)
+                .retrieve()
+                .bodyToMono(Monster.class);
     }
-
-    public List<Monster> findMonstersByType(String type) {
-        return monsterDao.findAllByType(type);
-    }
-
-
 }
