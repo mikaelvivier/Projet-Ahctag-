@@ -23,6 +23,7 @@ public class Player {
     // Setters
     @Setter
     @MongoId
+    @Getter
     private UUID id;
     @Setter
     private String name;

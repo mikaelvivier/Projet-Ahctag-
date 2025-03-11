@@ -1,36 +1,42 @@
-package com.imt.demo.model;
+package com.imt.demo.dto;
 
-import com.imt.demo.dto.Skill;
-import com.imt.demo.dto.Type;
-import lombok.AllArgsConstructor;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.MongoId;
 
 import java.util.UUID;
 
+//DTO (Data Transfer Object) est un objet utilisé
+// pour transférer des données entre les couches d'une application.
+
 @Setter
 @Getter
-@Document
 @NoArgsConstructor
-@AllArgsConstructor
-public class Monster {
+public class MonsterJsonDto {
 
-    @MongoId
     private UUID id;
     private Type type;
-    private int hp;
-    private int atk;
-    private int def;
-    private int vit;
+    @Min(1) private int hp;
+    @Min(1) private int atk;
+    @Min(1) private int def;
+    @Min(1) private int vit;
     private Skill skill1;
     private Skill skill2;
     private Skill skill3;
 
-    public Monster(Type type, int hp, int atk, int def, int vit) {
-        this.id = UUID.randomUUID();
+
+    public MonsterJsonDto(Type type, int hp, int atk, int def, int vit) {
+        this.type = type;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.vit = vit;
+        initializeSkills();
+    }
+
+    public MonsterJsonDto(UUID id, Type type, int hp, int atk, int def, int vit) {
+        this.id=id;
         this.type = type;
         this.hp = hp;
         this.atk = atk;
@@ -59,15 +65,6 @@ public class Monster {
             default:
                 throw new IllegalArgumentException("Type de monstre non supporté : " + type);
         }
-    }
-
-    // Getter et Setter pour id
-    public UUID getId() {
-        return id;
-    }
-
-    public void setId(UUID id) {
-        this.id = id;
     }
 
     // Getter et Setter pour type
@@ -115,28 +112,29 @@ public class Monster {
         this.vit = vit;
     }
 
-    public Skill getSkill1() {
-        return skill1;
-    }
-
-    public void setSkill1(Skill skill1) {
-        this.skill1 = skill1;
-    }
-
     public Skill getSkill2() {
         return skill2;
     }
 
-    public void setSkill2(Skill skill2) {
-        this.skill2 = skill2;
+    public Skill getSkill1() {
+        return skill1;
     }
 
     public Skill getSkill3() {
         return skill3;
     }
 
+    public void setSkill1(Skill skill1) {
+        this.skill1 = skill1;
+    }
+
+    public void setSkill2(Skill skill2) {
+        this.skill2 = skill2;
+    }
+
     public void setSkill3(Skill skill3) {
         this.skill3 = skill3;
     }
 }
+
 

@@ -1,6 +1,7 @@
 package com.imt.demo.dto;
 
 import java.util.List;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -19,7 +20,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlayerJsonDto {
-
+    private UUID id;
     @NotNull private String name;
     @Min(1) private int lvl;
     @Min(1) private int requireXp;
