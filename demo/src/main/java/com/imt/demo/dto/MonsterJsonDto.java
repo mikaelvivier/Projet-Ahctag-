@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 //DTO (Data Transfer Object) est un objet utilisé
 // pour transférer des données entre les couches d'une application.
 
@@ -19,6 +21,7 @@ import lombok.Setter;
 @NoArgsConstructor
 public class MonsterJsonDto {
 
+    private UUID id;
     private Type type;
     @Min(1) private int hp;
     @Min(1) private int atk;
@@ -30,6 +33,16 @@ public class MonsterJsonDto {
 
 
     public MonsterJsonDto(Type type, int hp, int atk, int def, int vit) {
+        this.type = type;
+        this.hp = hp;
+        this.atk = atk;
+        this.def = def;
+        this.vit = vit;
+        initializeSkills();
+    }
+
+    public MonsterJsonDto(UUID id, Type type, int hp, int atk, int def, int vit) {
+        this.id=id;
         this.type = type;
         this.hp = hp;
         this.atk = atk;

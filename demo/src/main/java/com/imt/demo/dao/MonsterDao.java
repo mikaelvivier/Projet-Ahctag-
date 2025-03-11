@@ -14,5 +14,6 @@ import java.util.UUID;
 public interface MonsterDao extends MongoRepository<Monster, UUID> {
 
     List<Monster> findAllByType(String type);
+    Monster findMonsterById(UUID id);
 
 }

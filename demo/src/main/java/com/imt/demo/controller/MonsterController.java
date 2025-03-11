@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Value;
 import javax.naming.AuthenticationException;
 import java.util.Collections;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/monster")
@@ -54,6 +55,34 @@ public class MonsterController {
         }
     }
 
+    /*
+    @PostMapping("/levelup/{monsterId}")
+    public ResponseEntity<Monster> levelUpMonster(@RequestHeader("Authorization") String authHeader, @PathVariable UUID monsterId) {
+        try {
+            tokenValidationService.authenticate(authHeader);
+            Monster monster = monsterService.getMonsterById(monsterId);
+            monsterService.setStatsOfMonster(monster);
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
+    */
+
+    @PostMapping("/delete/{id}")
+    public ResponseEntity<String> deleteMonster(@RequestHeader("Authorization") String authHeader, @PathVariable UUID id) {
+        try {
+            tokenValidationService.authenticate(authHeader);
+            monsterService.deleteMonster(id);
+
+            return ResponseEntity.ok("deleted !");
+        }
+        catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+        }
+    }
+
+
+
     @GetMapping("/{type}")
     public ResponseEntity<List<MonsterJsonDto>> getMonsters(@RequestHeader("Authorization") String authHeader, @PathVariable String type) {
         try {
@@ -61,6 +90,7 @@ public class MonsterController {
             List<MonsterJsonDto> monstersByType = monsterService.findMonstersByType(type)
                     .stream()
                     .map(monster -> new MonsterJsonDto(
+                            monster.getId(),
                             Type.valueOf(String.valueOf(monster.getType())),
                             monster.getHp(),
                             monster.getAtk(),
