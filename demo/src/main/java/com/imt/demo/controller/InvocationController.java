@@ -34,15 +34,28 @@ public class InvocationController {
     }
 
     @GetMapping("monster")
-    public ResponseEntity<Monster> invocate(){
-        Monster monster = monsterService.invocateMonster();
-        return ResponseEntity.ok(monster);
+    public ResponseEntity<Monster> invocate(@RequestHeader("Authorization") String authHeader){
+        try {
+            tokenValidationService.authenticate(authHeader);
+            Monster monster = monsterService.invocateMonster();
+            return ResponseEntity.ok(monster);
+        }
+        catch (AuthenticationException e){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
     }
 
     @GetMapping("player/{idPlayer}")
-    public ResponseEntity<Player> player(@PathVariable UUID idPlayer){
-        Player player = playerService.getPlayerById(idPlayer);
-        return ResponseEntity.ok(player);
+    public ResponseEntity<Player> player(@RequestHeader("Authorization") String authHeader, @PathVariable UUID idPlayer){
+        try {
+            tokenValidationService.authenticate(authHeader);
+            Player player = playerService.getPlayerById(idPlayer);
+            return ResponseEntity.ok(player);
+        }
+         catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+
     }
 
 
