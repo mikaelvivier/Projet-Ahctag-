@@ -34,7 +34,7 @@ public class Player {
     private int maxList;
     @Setter
     @DBRef
-    private List<String> monsters=new ArrayList<>();
+    private List<Monster> monsters=new ArrayList<>();
 
     public Player(String name, int lvl) {
         this.id = UUID.randomUUID();
@@ -61,12 +61,12 @@ public class Player {
         this.maxList += 1;
     }
 
-    public void addMonster(String id){
-        this.monsters.add(id);
+    public void addMonster(Monster monster){
+        this.monsters.add(monster);
     }
 
-    public void removeMonster(String id){
-        this.monsters.remove(id);
+    public void removeMonster(Monster monster){
+        this.monsters.remove(monster);
     }
 
 

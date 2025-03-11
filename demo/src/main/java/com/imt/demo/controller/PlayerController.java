@@ -59,7 +59,7 @@ public class PlayerController {
     }
 
     @GetMapping("/show/monster_list/{id}")
-    public List<String> showMonsterList(@PathVariable UUID id) {
+    public List<Monster> showMonsterList(@PathVariable UUID id) {
         Player player = playerService.getPlayerById(id);
         if (player == null) {
             return Collections.emptyList();
