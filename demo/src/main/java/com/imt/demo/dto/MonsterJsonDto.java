@@ -1,14 +1,8 @@
 package com.imt.demo.dto;
 
 import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
 import lombok.Setter;
 
 import java.util.UUID;
@@ -54,19 +48,19 @@ public class MonsterJsonDto {
     private void initializeSkills() {
         switch (type) {
             case FEU:
-                this.skill1 = Skill.FIREBALL;
-                this.skill2 = Skill.FLAME_BURST;
-                this.skill3 = Skill.INFERNO;
+                this.skill1 = Skill.FIREBALL_LV1;
+                this.skill2 = Skill.FLAME_BURST_LV1;
+                this.skill3 = Skill.INFERNO_LV1;
                 break;
             case EAU:
-                this.skill1 = Skill.WATER_BLAST;
-                this.skill2 = Skill.TIDAL_WAVE;
-                this.skill3 = Skill.AQUA_JET;
+                this.skill1 = Skill.WATER_BLAST_LV1;
+                this.skill2 = Skill.TIDAL_WAVE_LV1;
+                this.skill3 = Skill.AQUA_JET_LV1;
                 break;
             case VENT:
-                this.skill1 = Skill.WIND_SLASH;
-                this.skill2 = Skill.TORNADO;
-                this.skill3 = Skill.AIR_STRIKE;
+                this.skill1 = Skill.WIND_SLASH_LV1;
+                this.skill2 = Skill.TORNADO_LV1;
+                this.skill3 = Skill.AIR_STRIKE_LV1;
                 break;
             default:
                 throw new IllegalArgumentException("Type de monstre non supporté : " + type);

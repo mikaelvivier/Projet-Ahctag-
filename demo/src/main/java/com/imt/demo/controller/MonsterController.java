@@ -34,9 +34,8 @@ public class MonsterController {
         this.monsterService = monsterService;
     }
 
-
     @PostMapping("/save")
-    public ResponseEntity<String> createMonster(@RequestHeader("Authorization") String authHeader, @Valid @RequestBody MonsterJsonDto monster) {
+    public ResponseEntity<UUID> createMonster(@RequestHeader("Authorization") String authHeader, @Valid @RequestBody MonsterJsonDto monster) {
         try {
             tokenValidationService.authenticate(authHeader);
             monsterService.saveMonster(
@@ -48,25 +47,27 @@ public class MonsterController {
                             monster.getVit())
             );
 
-            return ResponseEntity.ok("saved !");
+            return ResponseEntity.ok(monster.getId());
+            //TODO ne retourne pas l'id, c'est bizarre
 
         } catch (AuthenticationException e) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(e.getMessage());
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 
-    /*
+
     @PostMapping("/levelup/{monsterId}")
     public ResponseEntity<Monster> levelUpMonster(@RequestHeader("Authorization") String authHeader, @PathVariable UUID monsterId) {
         try {
             tokenValidationService.authenticate(authHeader);
             Monster monster = monsterService.getMonsterById(monsterId);
             monsterService.setStatsOfMonster(monster);
+            return ResponseEntity.ok(monster);
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
-    */
+
 
     @PostMapping("/delete/{id}")
     public ResponseEntity<String> deleteMonster(@RequestHeader("Authorization") String authHeader, @PathVariable UUID id) {
@@ -83,7 +84,7 @@ public class MonsterController {
 
 
 
-    @GetMapping("/{type}")
+    @GetMapping("/type/{type}")
     public ResponseEntity<List<MonsterJsonDto>> getMonsters(@RequestHeader("Authorization") String authHeader, @PathVariable String type) {
         try {
             tokenValidationService.authenticate(authHeader);
