@@ -23,7 +23,7 @@ public class PlayerController {
     private final PlayerService playerService;
 
     @Autowired
-    private final TokenValidationService tokenValidationService;
+    private TokenValidationService tokenValidationService;
 
     public PlayerController(PlayerService playerService, TokenValidationService tokenValidationService) {
         this.playerService = playerService;
@@ -33,7 +33,7 @@ public class PlayerController {
 
 
     @PostMapping("/save")
-    public ResponseEntity<UUID> createPlayer(@RequestHeader("Authorization") String authHeader,@Valid @RequestBody PlayerJsonDto player) {
+    public ResponseEntity<String> createPlayer(@RequestHeader("Authorization") String authHeader,@Valid @RequestBody PlayerJsonDto player) {
         try {
             tokenValidationService.authenticate(authHeader);
             playerService.savePlayer(
@@ -41,7 +41,7 @@ public class PlayerController {
                             player.getName(),
                             player.getLvl())
             );
-            return ResponseEntity.ok(player.getId());
+            return ResponseEntity.ok("saved");
         }
         catch (AuthenticationException e){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
@@ -51,8 +51,19 @@ public class PlayerController {
 
     }
 
+    @GetMapping("/show/players")
+    public ResponseEntity<List<Player>> showPlayers(@RequestHeader("Authorization") String authHeader) {
+        try {
+            tokenValidationService.authenticate(authHeader);
+            playerService.getAllPlayers();
+            return ResponseEntity.ok(playerService.getAllPlayers());
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
+
     @GetMapping("/show/{id}")
-    public ResponseEntity<Player> show(@RequestHeader("Authorization") String authHeader, @PathVariable UUID id) {
+    public ResponseEntity<Player> showPlayerById(@RequestHeader("Authorization") String authHeader, @PathVariable UUID id) {
         try {
             tokenValidationService.authenticate(authHeader);
             try {
