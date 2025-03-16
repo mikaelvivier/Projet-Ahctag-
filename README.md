@@ -1,4 +1,4 @@
-To start the project : 
+# To start the project : 
 > go to
   docker-compose directory
 
@@ -9,10 +9,10 @@ To start the project :
 
 start to run the app
 
-# To activate the front, remove (#) on front service in docker-compose.yaml
-# building the image is reaaaally long.. you can test the app on postman 
+To activate the front, remove (#) on front service in docker-compose.yaml
+building the image is reaaaally long.. you can test the app on postman 
 
---- step 1 : --- 
+# --- step 1 : --- 
 register at
 localhost:8081/auth/register 
 
@@ -20,7 +20,7 @@ login at
 localhost:8081/auth/login
 (save your Bearer Token, you'll need it later)
 
---- step 2: ---
+# --- step 2: ---
 create monsters 
 localhost:8080/monster/save
 {
@@ -35,7 +35,7 @@ you can level up your monster with
 localhost:8080/monster/levelup/{monsterId}
 (you can get the id in the database, for exemple with mongosh)
 
---- step 3: ---
+# --- step 3: ---
 create players
 localhost:8082/player/save
 {
@@ -43,5 +43,5 @@ localhost:8082/player/save
     "lvl": 1
 }
 
-step 4
+# step 4
 
