@@ -57,6 +57,6 @@ post localhost:8084/fight/{idMonster1}/{idMonster2}
 
 # --- Others ---
 
-- unit tests are availables on API fight and API authenticator
+- unit tests are available on API fight and API authenticator
 - Get methods are also available. For exemple on API Monster, you can Get all the monsters or filter with a Get monsters by Type.
 
