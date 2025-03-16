@@ -35,7 +35,7 @@ public class MonsterController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<UUID> createMonster(@RequestHeader("Authorization") String authHeader, @Valid @RequestBody MonsterJsonDto monster) {
+    public ResponseEntity<String> createMonster(@RequestHeader("Authorization") String authHeader, @Valid @RequestBody MonsterJsonDto monster) {
         try {
             tokenValidationService.authenticate(authHeader);
             monsterService.saveMonster(
@@ -47,14 +47,24 @@ public class MonsterController {
                             monster.getVit())
             );
 
-            return ResponseEntity.ok(monster.getId());
-            //TODO ne retourne pas l'id, c'est bizarre
+            return ResponseEntity.ok("save");
+
 
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
         }
     }
 
+    @GetMapping("/show/monsters")
+    public ResponseEntity<List<Monster>> getMonsters(@RequestHeader("Authorization") String authHeader) {
+        try {
+            tokenValidationService.authenticate(authHeader);
+
+            return ResponseEntity.ok(monsterService.getMonsters());
+        } catch (AuthenticationException e) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
+        }
+    }
 
     @PostMapping("/levelup/{monsterId}")
     public ResponseEntity<Monster> levelUpMonster(@RequestHeader("Authorization") String authHeader, @PathVariable UUID monsterId) {

@@ -52,6 +52,10 @@ public class MonsterService {
 
     }
 
+    public List<Monster> getMonsters() {
+        return monsterDao.findAll();
+    }
+
     private Skill upgradeSkill(Skill skill, Skill fallback1, Skill fallback2) {
         String skillName = skill.name();
 
