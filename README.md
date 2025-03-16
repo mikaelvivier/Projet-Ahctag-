@@ -31,6 +31,10 @@ post localhost:8080/monster/save
     "vit":10
 }
 
+level up a monster
+localhost:8080/monster/levelup/{idMonster}
+
+
 you can level up your monster with 
 localhost:8080/monster/levelup/{monsterId}
 (you can get the id in the database, for exemple with mongosh)
@@ -54,5 +58,5 @@ post localhost:8084/fight/{idMonster1}/{idMonster2}
 # --- Others ---
 
 - unit tests are availables on API fight and API authenticator
-- 
+- Get methods are also available. For exemple on API Monster, you can Get all the monsters or filter with a Get monsters by Type.
 
