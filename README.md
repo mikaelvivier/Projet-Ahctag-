@@ -18,11 +18,11 @@ localhost:8081/auth/register
 
 login at 
 localhost:8081/auth/login
-(save your Bearer Token, you'll need it later)
+(save your Bearer Token, you'll need it later for every CRUD on the other APIs)
 
 # --- step 2: ---
 create monsters 
-localhost:8080/monster/save
+post localhost:8080/monster/save
 {
     "type":"VENT",
     "hp":30,
@@ -37,11 +37,22 @@ localhost:8080/monster/levelup/{monsterId}
 
 # --- step 3: ---
 create players
-localhost:8082/player/save
+post localhost:8082/player/save
 {
     "name": "joueur1",
     "lvl": 1
 }
 
-# step 4
+# --- step 4: ---
+generate monsters for a player
+post localhost:8083/invocate/invocateMonstersForPlayer/{playerId}
+
+# --- step 5: ---
+Make a fight
+post localhost:8084/fight/{idMonster1}/{idMonster2}
+
+# --- Others ---
+
+- unit tests are availables on API fight and API authenticator
+- 
 
