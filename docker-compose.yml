@@ -47,5 +47,43 @@ services:
       mongo:
         condition: service_healthy
 
+  api-player:
+    build: ../api-player/demo
+    container_name: api-player
+    ports:
+      - "8082:8080"
+    links:
+      - mongo
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+  api-invocation:
+    build: ../api-invocation/demo
+    container_name: api-invocation
+    ports:
+      - "8083:8080"
+    links:
+      - mongo
+    depends_on:
+      mongo:
+        condition: service_healthy
+
+
+  # frontend:
+    # build: ../app
+    # ports:
+      # - "3000:3000"
+    # volumes:
+      # - ../app:/app
+      # - /app/node_modules
+    # stdin_open: true
+    # tty: true
+    # depends_on:
+      # - api-invocation
+      # - api-player
+      # - api-monsters
+      # - api-authenticator
+
 volumes:
   mongo:
