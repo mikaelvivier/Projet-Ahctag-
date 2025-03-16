@@ -55,7 +55,6 @@ public class PlayerController {
     public ResponseEntity<List<Player>> showPlayers(@RequestHeader("Authorization") String authHeader) {
         try {
             tokenValidationService.authenticate(authHeader);
-            playerService.getAllPlayers();
             return ResponseEntity.ok(playerService.getAllPlayers());
         } catch (AuthenticationException e) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(null);
